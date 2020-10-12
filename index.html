@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>home
+  </title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/default-1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+     
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+      <a href="">About</a>
+      <a href="#">VIRUS</a>
+      <a href="#">HISTORY</a>
+      <a href="#">HAVE TO KNOW</a> 
+    </div>
+  </div>
+  
+  <span style="font-size:30px;cursor:pointer; color: #818181;" onclick="openNav()">&#9776; </span>
+  
+  
+  <div class="container">
+    
+    <video autoplay muted loop id="myVideo">
+    <source src="back2.mp4" type="video/mp4">
+     </video>
+  
+  <!-- Optional: some overlay text to describe the video -->
+    <div class="content">
+      <h2>Conditional alive</h2>
+        <h1>VIRUS</h1>
+        <main class="prompt" style="width: 1000px; margin-left: 1000px; text-align: right;  ">
+          <p>“바이러스는 라틴어로 독(poison)이란 뜻이다. 바이러스의 존재는 19세기 후반에나 알려지기 시작했는데, </p>
+          <p>그 이전에는 병을 일으키는 작은 미생물은 세균뿐이고 생각했다. 그러나 세균보다 작은 어떤 액체(Fluid)가 </p>
+          <p>병을 일으킨다는 것을 발견하였을 때, 세균보다 작은 것은 독(poison)일 것이라 추측하였기 때문에 세균보다</p>
+          <p> 작은 전염성 병원체 virus(posion)라 명명하였다.”</p>
+        </main>
+     
+    </div>
+    </div>
+    
+      
+		
+        
+		<footer class="footer">
+			2020, 1분코딩
+		</footer>
+	</div>
+
+
+</body>
+
+<script>
+    function openNav() {
+      document.getElementById("myNav").style.width = "100%";
+    }
+    
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }
+    </script>
+         
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+var $lines = $('.prompt p');
+$lines.hide();
+var lineContents = new Array();
+
+var terminal = function() {
+
+  var skip = 0;
+  typeLine = function(idx) {
+    idx == null && (idx = 0);
+    var element = $lines.eq(idx);
+    var content = lineContents[idx];
+    if(typeof content == "undefined") {
+      $('.skip').hide();
+      return;
+    }
+    var charIdx = 0;
+
+    var typeChar = function() {
+      var rand = Math.round(Math.random() * 150) + 25;
+
+      setTimeout(function() {
+        var char = content[charIdx++];
+        element.append(char);
+        if(typeof char !== "undefined")
+          typeChar();
+        else {
+          element.append('<br/><span class="output">' + element.text().slice(9, -1) + '</span>');
+          element.removeClass('active');
+          typeLine(++idx);
+        }
+      }, skip ? 0 : rand);
+    }
+    content = '' + content + '';
+    element.append(' ').addClass('active');
+    typeChar();
+  }
+
+  $lines.each(function(i) {
+    lineContents[i] = $(this).text();
+    $(this).text('').show();
+  });
+
+  typeLine();
+}
+
+terminal();
+</script>
+
+</body>
+</html>
