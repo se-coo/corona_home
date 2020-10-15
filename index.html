@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>home
+  </title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/default-1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+
+</head>
+<style>
+body{width: 100%; overflow: hidden ; background-color: black;}
+.local-nav {
+	position: absolute;
+	top: 45px;
+	left: 0;
+	z-index: 11;
+	width: 100%;
+	height: 30px;
+	padding: 0 1rem;
+	border-bottom: 1px solid #ddd;
+}
+.local-nav-sticky .local-nav {
+	position: fixed;
+	top: 0;
+	background: rgba(255, 255, 255, 0.1);
+	/* for iPhone */
+	-webkit-backdrop-filter: saturate(180%) blur(15px);
+	-moz-backdrop-filter: saturate(180%) blur(15px);
+	-o-backdrop-filter: saturate(180%) blur(15px);
+	backdrop-filter: saturate(180%) blur(15px);
+}
+.local-nav-links {
+	display: flex;
+  align-items: center;
+  justify-content: space-between;
+	max-width: 1500px;
+	height: 100%;
+	margin: 0 auto;
+}
+.local-nav-links .product-name {
+	margin-right: 30rem;
+	font-size: 1.6rem;
+  font-weight: bold;
+  color: white;
+}
+.local-nav-links a {
+  font-size: 1.3rem;
+  color: white;
+}
+.local-nav-links a:not(.product-name) {
+	margin-left:1rem;
+}
+</style>
+
+
+<body>
+
+  <nav class="local-nav">
+    <div class="local-nav-links">
+      <a href="#" class="product-name">VIRUS REPORT</a>
+      <a href="#"> VIRUS</a>
+      <a href="#"> COLLECTION</a>
+      <a href="#">DISEASE</a>
+      <a href="#">WHAT TO DO</a>
+    </div>
+  </nav>
+  
+
+  
+  <!-- Optional: some overlay text to describe the video -->
+    <div class="content" style="display: flex; flex-direction: column; align-items: center; top: 27%;">
+        <h1>VIRUS REPORT</h1>
+        <div style="width: 500px; height:5px; ; background-color:white; top: 60%;"></div>
+        <main class="prompt" style="width: 900px; text-align: center; margin-top: 30px;line-height: 1.5; ">
+          <p>2020, 코로나 바이러스가 창궐하며 전세계가 팬데믹에 빠졌다. <br>
+            점점 빨라지는 새로운 바이러스의 창궐, 그리고 점점 더 강해지는 전염성과 치사율.<br>
+            이런 바이러스는 어디서 어떻게 오는 것이며, 지금까지 바이러스에 의한 전염병은 어떤것들이 있었는지 알아보고
+            앞으로 우리는 어떤 자세를 가져야 할지 대비해보자.</p>
+        </main>
+      </div>
+    </div>
+    </div>
+    
+      
+		
+    
+	</div>
+
+
+</body>
+
+<script >	function checkMenu() {
+  if (yOffset > 44) {
+    document.body.classList.add('local-nav-sticky');
+  } else {
+    document.body.classList.remove('local-nav-sticky');
+  }
+}
+</script>
+
+<script>
+    function openNav() {
+      document.getElementById("myNav").style.width = "100%";
+    }
+    
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }
+    </script>
+         
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+var $lines = $('.prompt p');
+$lines.hide();
+var lineContents = new Array();
+
+var terminal = function() {
+
+  var skip = 0;
+  typeLine = function(idx) {
+    idx == null && (idx = 0);
+    var element = $lines.eq(idx);
+    var content = lineContents[idx];
+    if(typeof content == "undefined") {
+      $('.skip').hide();
+      return;
+    }
+    var charIdx = 0;
+
+    var typeChar = function() {
+      var rand = Math.round(Math.random() * 150) + 25;
+
+      setTimeout(function() {
+        var char = content[charIdx++];
+        element.append(char);
+        if(typeof char !== "undefined")
+          typeChar();
+        else {
+          element.append('<br/><span class="output">' + element.text().slice(9, -1) + '</span>');
+          element.removeClass('active');
+          typeLine(++idx);
+        }
+      }, skip ? 0 : rand);
+    }
+    content = '' + content + '';
+    element.append(' ').addClass('active');
+    typeChar();
+  }
+
+  $lines.each(function(i) {
+    lineContents[i] = $(this).text();
+    $(this).text('').show();
+  });
+
+  typeLine();
+}
+
+terminal();
+</script>
+
+</body>
+</html>
+
